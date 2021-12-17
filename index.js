@@ -27,7 +27,7 @@ function employeeTime() {
                     });
                     break;
                 case "View all roles":
-                    sql = `SELECT roles.title, roles.salary, departments.name
+                    sql = `SELECT roles.id, roles.title, roles.salary, departments.name
                     AS department
                     FROM roles
                     LEFT JOIN departments
@@ -39,7 +39,10 @@ function employeeTime() {
                     });
                     break;
                 case "View all employees":
-                    sql = `SELECT * FROM employees`;
+                    sql = `SELECT employees.id, employees.first_name, employees.last_name, roles.title AS title, departments.name AS department, roles.salary AS salary, manager_id AS manager
+                    FROM employees
+                    LEFT JOIN roles ON employees.role_id = roles.id
+                    LEFT JOIN departments ON roles.department_id = departments.id`;
                     db.query(sql, (err, rows) => {
                         console.log("Here is a list of employees: ");
                         console.table(rows);
