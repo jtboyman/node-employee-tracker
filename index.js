@@ -2,7 +2,6 @@ const inquirer = require('inquirer');
 const db = require('./db/connection');
 const cTable = require('console.table');
 
-
 function employeeTime() {
     console.log("Welcome to the employee database main menu!")
 
